@@ -1,4 +1,6 @@
-function handleClick() {
+function handleClick(e) {
+  if (e.type === "keydown" && e.key != "Enter") return;
+
   const list = document.querySelector("ul");
   const input = document.querySelector("input");
 
@@ -33,7 +35,7 @@ function loadList() {
   const savedItems = JSON.parse(localStorage.getItem("todoList")) || [];
   const list = document.querySelector("ul");
 
-  savedItems.forEach(itemText => {
+  savedItems.forEach((itemText) => {
     const listItem = document.createElement("li");
     const btn = document.createElement("button");
 
@@ -50,5 +52,7 @@ function loadList() {
 }
 
 document.querySelector("button").addEventListener("click", handleClick);
+
+document.querySelector("input").addEventListener("keydown", handleClick);
 
 document.addEventListener("DOMContentLoaded", loadList);
